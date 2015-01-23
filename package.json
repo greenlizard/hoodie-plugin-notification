@@ -1,6 +1,6 @@
 {
   "name": "hoodie-plugin-notification",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Notification Hoodie plugin",
   "main": "worker.js",
   "dependencies": {
@@ -40,6 +40,12 @@
     ],
     "hoodiejs": "node_modules/hoodie/src/hoodie.js"
   },
+  "keywords": [
+    "hoodie",
+    "notification",
+    "goappes",
+    "plugin"
+  ],
   "scripts": {
     "test": "grunt test"
   },
