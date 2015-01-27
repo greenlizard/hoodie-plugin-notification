@@ -75,58 +75,25 @@ Hoodie.extend(function (hoodie) {
         .fail(defer.reject);
       return defer.promise();
     },
-
-    requestFriend: function (userName) {
+    desactive: function (userId, notificationType) {
       var defer = window.jQuery.Deferred();
       defer.notify('requestFriend', arguments, false);
-      hoodie.notification.getProfile(userName)
-        .fail(defer.reject)
-        .then(function (task) {
-          hoodie.notification.create(hoodie.id(), task.profile.userId, 'requestFriend')
-            .then(defer.resolve)
-            .fail(defer.reject);
-        });
-      return defer.promise();
-    },
-    dualFollow: function (task) {
-      var defer = window.jQuery.Deferred();
-      defer.notify('dualFollow', arguments, false);
-      hoodie.task('notificationdualfollow').start(task)
-        .then(defer.resolve)
-        .fail(defer.reject);
-      return defer.promise();
-    },
-    acceptedFriend: function (userId) {
-      var defer = window.jQuery.Deferred();
-      defer.notify('acceptedFriend', arguments, false);
-      hoodie.notification.create(hoodie.id(), userId, 'acceptedFriend')
-        .then(function () {
-          var task = {
-            notification: {
-              dualFollow: {
-                from: userId,
-                to: hoodie.id()
-              }
+      hoodie.notification.list()
+        .then(function (notifications) {
+          notifications.map(function (v) {
+            if (v.from === userId && v.notificationType === notificationType) {
+              hoodie.store.add('notificationbkp', v)
+                .then(function () {
+                  hoodie.store.remove('notification', v.id)
+                    .then(defer.resolve)
+                    .fail(defer.reject);
+                })
+                .fail(defer.reject);
             }
-          };
-          hoodie.notification.dualFollow(task)
-            .then(defer.resolve)
-            .fail(defer.reject);
+          });
+          defer.resolve({});
         })
         .fail(defer.reject);
-
-      return defer.promise();
-    },
-    rejectedFriend: function (userName) {
-      var defer = window.jQuery.Deferred();
-      defer.notify('requestFriend', arguments, false);
-      hoodie.notification.getProfile(userName)
-        .fail(defer.reject)
-        .then(function (task) {
-          hoodie.notification.create(hoodie.id(), task.profile.userId, 'rejectedFriend')
-            .then(defer.resolve)
-            .fail(defer.reject);
-        });
       return defer.promise();
     }
   };
