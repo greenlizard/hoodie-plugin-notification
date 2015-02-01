@@ -50,6 +50,7 @@ Hoodie.extend(function (hoodie) {
       hoodie.task('notification').start(task)
         .then(defer.resolve)
         .fail(defer.reject);
+      hoodie.remote.push();
       return defer.promise();
     },
     on: function (cb) {
