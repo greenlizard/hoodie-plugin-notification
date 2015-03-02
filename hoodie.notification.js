@@ -54,7 +54,7 @@ Hoodie.extend(function (hoodie) {
       return defer.promise();
     },
     on: function (cb) {
-      hoodie.store.on('notification:add', function (doc) {
+      hoodie.remote.on('notification:add', function (doc) {
         out('notification', doc, 'on');
         if (doc.status === 'new') {
           doc.status = 'read';
