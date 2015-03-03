@@ -81,20 +81,45 @@ Hoodie.extend(function (hoodie) {
       defer.notify('requestFriend', arguments, false);
       hoodie.notification.list()
         .then(function (notifications) {
-          notifications.map(function (v) {
-            if (v.from === userId && v.notificationType === notificationType) {
-              hoodie.store.add('notificationbkp', v)
-                .then(function () {
-                  hoodie.store.remove('notification', v.id)
-                    .then(defer.resolve)
-                    .fail(defer.reject);
-                })
-                .fail(defer.reject);
-            }
-          });
-          defer.resolve({});
+          var _defer = window.jQuery.Deferred();
+          _defer.resolve(
+            notifications
+              .filter(function (v) {
+                return (v.from === userId && v.notificationType === notificationType);
+              })
+              .reduce(function (b, c) {
+                return c || b;
+              }, {})
+          );
+          return _defer.promise();
         })
-        .fail(defer.reject);
+        .then(function (notification) {
+          var _defer = window.jQuery.Deferred();
+
+          var nbkp = {
+            from: notification.from,
+            notificationType: notification.notificationType,
+            status: notification.status,
+            to: notification.to
+          };
+
+          hoodie.store.add('notificationbkp', nbkp)
+            .then(function () {
+              _defer.resolve(notification.id);
+            })
+            .fail(_defer.reject);
+          return _defer.promise();
+        })
+        .then(function (id) {
+          var _defer = window.jQuery.Deferred();
+          hoodie.store.remove('notification', id)
+            .then(_defer.resolve)
+            .fail(_defer.reject);
+          return _defer.promise();
+        })
+        .then(defer.resolve)
+        .fail(defer.resolve);
+
       return defer.promise();
     }
   };
