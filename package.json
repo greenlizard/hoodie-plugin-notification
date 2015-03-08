@@ -43,7 +43,7 @@
   "keywords": [
     "hoodie",
     "notification",
-    "goappes",
+    "greenlizard",
     "plugin"
   ],
   "scripts": {
@@ -51,20 +51,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/goappes/hoodie-plugin-notification"
+    "url": "https://github.com/greenlizard/hoodie-plugin-notification"
   },
   "maintainers": [
     {
       "name": "gabriel",
-      "email": "gabriel@goappes.com"
+      "email": "gabriel@greenlizard.com.br"
     },
     {
       "name": "joao",
-      "email": "joao@goappes.com"
-    },
-    {
-      "name": "italo",
-      "email": "italo@goappes.com"
+      "email": "joao@greenlizard.com.br"
     }
   ]
 }

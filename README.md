@@ -1,6 +1,6 @@
 hoodie-plugin-notification
 ====================
-[![Build Status](https://travis-ci.org/goappes/hoodie-plugin-notification.svg?branch=master)](https://travis-ci.org/goappes/hoodie-plugin-notification) [![Dependencies](https://david-dm.org/goappes/hoodie-plugin-notification.png)](https://david-dm.org/goappes/hoodie-plugin-notification) [![devDependency Status](https://david-dm.org/goappes/hoodie-plugin-notification/dev-status.svg)](https://david-dm.org/goappes/hoodie-plugin-notification#info=devDependencies) [![Code Climate](https://codeclimate.com/github/goappes/hoodie-plugin-notification/badges/gpa.svg)](https://codeclimate.com/github/goappes/hoodie-plugin-notification)
+[![Build Status](https://travis-ci.org/greenlizard/hoodie-plugin-notification.svg?branch=master)](https://travis-ci.org/greenlizard/hoodie-plugin-notification) [![Dependencies](https://david-dm.org/greenlizard/hoodie-plugin-notification.png)](https://david-dm.org/greenlizard/hoodie-plugin-notification) [![devDependency Status](https://david-dm.org/greenlizard/hoodie-plugin-notification/dev-status.svg)](https://david-dm.org/greenlizard/hoodie-plugin-notification#info=devDependencies) [![Code Climate](https://codeclimate.com/github/greenlizard/hoodie-plugin-notification/badges/gpa.svg)](https://codeclimate.com/github/greenlizard/hoodie-plugin-notification)
 
 ## Dependencies
 ```shell
